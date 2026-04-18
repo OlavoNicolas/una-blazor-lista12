@@ -1,0 +1,66 @@
+@page "/EcoStatus"
+@rendermode InteractiveServer
+
+<h1>EcoStatus</h1>
+
+<div class="container-cards">
+
+    <div class="card">
+        <h3>Plástico reciclado</h3>
+        <p>Clique e comece a pontuar</p>
+        <p class="valor">@plastico</p>
+        <button class="btn" @onclick="IncrementarPlastico">+1</button>
+    @if (Progresso >= 100){
+    <p class="conquista">🌎 Você é um Herói do Planeta!</p>
+    }
+    </div>
+
+    <div class="card">
+        <h3>Eletrônicos reciclados</h3>
+        <p>Clique e comece a pontuar</p>
+        <p class="valor">@eletronico</p>
+        <button class="btn" @onclick="IncrementarEletronico">+5</button>
+    @if (Progresso >= 100){
+    <p class="conquista">🌎 Você é um Herói do Planeta!</p>
+    }
+    </div>
+
+    <div class="card">
+        <h3>Árvores plantadas</h3>
+        <p>Clique e comece a pontuar</p>
+        <p class="valor">@arvores</p>
+        <button class="btn" @onclick="IncrementarArvores">+10</button>
+    @if (Progresso >= 100){
+    <p class="conquista">🌎 Você é um Herói do Planeta!</p>
+    }
+    </div>
+
+</div>
+
+<h3>Progresso ambiental</h3>
+
+<div class="barra">
+    <div class="progresso" style="width:@Progresso%"></div>
+</div>
+
+<p>@Progresso%</p>
+
+@code {
+    int plastico = 0, eletronico = 0, arvores = 0;
+    int Progresso => (plastico + eletronico + arvores);
+    
+    void IncrementarPlastico()
+    {
+        plastico++;
+    }
+
+    void IncrementarEletronico()
+    {
+        eletronico = eletronico + 5;
+    }
+
+    void IncrementarArvores()
+    {
+        arvores = arvores + 10;
+    }
+}
